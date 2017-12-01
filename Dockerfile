@@ -26,9 +26,9 @@ RUN set -x \
 | tar -xj --strip-components=2 -C ${TOMCAT}/webapps midpoint-${MIDPOINT_VERSION}/war/midpoint.war \
 && mkdir -p ${HOME} \
 && chown -R 1001:0 ${HOME} \
-&& chmod -R 755 ${HOME} \
+&& chmod -R 777 ${HOME} \
 && chown -R 1001:0 ${TOMCAT} \
-&& chmod -R 755 ${TOMCAT}
+&& chmod -R 777 ${TOMCAT}
 
 USER 1001
 
