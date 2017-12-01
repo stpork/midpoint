@@ -20,12 +20,15 @@ RUN set -x \
 && apk add --no-cache ca-certificates curl nano tini \
 && update-ca-certificates \
 && rm -rf /var/cache/apk/* /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/* \
+&& TOMCAT=/usr/local/tomcat \
 && curl -fsSL \
 "https://evolveum.com/downloads/midpoint/${MIDPOINT_VERSION}/midpoint-${MIDPOINT_VERSION}-dist.tar.bz2" \
-| tar -xj --strip-components=2 -C /usr/local/tomcat/webapps midpoint-${MIDPOINT_VERSION}/war/midpoint.war \
+| tar -xj --strip-components=2 -C ${TOMCAT}/webapps midpoint-${MIDPOINT_VERSION}/war/midpoint.war \
 && mkdir -p ${HOME} \
 && chown -R 1001:0 ${HOME} \
-&& chown -R 1001:0 /usr/local/tomcat/
+&& chmod -R 755 ${HOME} \
+&& chown -R 1001:0 ${TOMCAT} \
+&& chmod -R 755 ${TOMCAT}
 
 USER 1001
 
