@@ -35,7 +35,8 @@ USER 1001
 EXPOSE 8080
 
 VOLUME ["${HOME}"]
-WORKDIR ["${HOME}"]
+
+WORKDIR ${HOME}
 
 CMD ["catalina.sh", "run"]
 ENTRYPOINT ["/sbin/tini", "--"]
